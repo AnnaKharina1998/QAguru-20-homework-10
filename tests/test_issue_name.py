@@ -5,7 +5,12 @@ from selene.support.shared import browser
 
 from models.models import Github
 
-
+@allure.tag("web")
+@allure.severity(Severity.CRITICAL)
+@allure.label("owner", "krasnokutskaya_ap")
+@allure.feature("Проверка названия issue")
+@allure.story("Проверка названия issue без шагов аллюра")
+@allure.link("https://github.com", name="Testing")
 def test_github_selene():
     browser.open('https://github.com')
     browser.element('.header-search-button').click()
@@ -14,8 +19,14 @@ def test_github_selene():
     browser.element('#issues-tab').click()
     browser.element(by.text('QAguru-20-homework-10 issue')).click()
     browser.element('[data-testid=issue-title]').should(have.text('QAguru-20-homework-10 issue'))
-    
-    
+
+
+@allure.tag("web")
+@allure.severity(Severity.CRITICAL)
+@allure.label("owner", "krasnokutskaya_ap")
+@allure.feature("Проверка названия issue")
+@allure.story("Проверка названия issue с использованием with allure step")
+@allure.link("https://github.com", name="Testing")
 def test_github_with_allure_step():
     with allure.step ("открываем главную страницу"):
         browser.open('https://github.com')
@@ -31,7 +42,12 @@ def test_github_with_allure_step():
     with allure.step("выполняем проверку имени"):
         browser.element('[data-testid=issue-title]').should(have.text('QAguru-20-homework-10 issue'))
 
-
+@allure.tag("web")
+@allure.severity(Severity.CRITICAL)
+@allure.label("owner", "krasnokutskaya_ap")
+@allure.feature("Проверка названия issue")
+@allure.story("Проверка названия issue с использованием декоратора allure step")
+@allure.link("https://github.com", name="Testing")
 def test_github_decorator_allure_step():
     github = Github()
     github.open_main_page()
